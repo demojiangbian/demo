@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Book" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="book_author" property="bookAuthor" jdbcType="VARCHAR" />
+    <result column="book_price" property="bookPrice" jdbcType="VARCHAR" />
+    <result column="book_categoty" property="bookCategoty" jdbcType="VARCHAR" />
+    <result column="book_publish" property="bookPublish" jdbcType="VARCHAR" />
+    <result column="book_introdution" property="bookIntrodution" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="createuid" property="createuid" jdbcType="VARCHAR" />
+    <result column="createip" property="createip" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="updateuid" property="updateuid" jdbcType="VARCHAR" />
+    <result column="updateip" property="updateip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, book_name, book_author, book_price, book_categoty, book_publish, book_introdution, 
+    type, createtime, createuid, createip, updatetime, updateuid, updateip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from book_table
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from book_table
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.Book" >
+    insert into book_table (id, book_name, book_author, 
+      book_price, book_categoty, book_publish, 
+      book_introdution, type, createtime, 
+      createuid, createip, updatetime, 
+      updateuid, updateip)
+    values (#{id,jdbcType=BIGINT}, #{bookName,jdbcType=VARCHAR}, #{bookAuthor,jdbcType=VARCHAR}, 
+      #{bookPrice,jdbcType=VARCHAR}, #{bookCategoty,jdbcType=VARCHAR}, #{bookPublish,jdbcType=VARCHAR}, 
+      #{bookIntrodution,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{createuid,jdbcType=VARCHAR}, #{createip,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{updateuid,jdbcType=VARCHAR}, #{updateip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Book" >
+    insert into book_table
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="bookAuthor != null" >
+        book_author,
+      </if>
+      <if test="bookPrice != null" >
+        book_price,
+      </if>
+      <if test="bookCategoty != null" >
+        book_categoty,
+      </if>
+      <if test="bookPublish != null" >
+        book_publish,
+      </if>
+      <if test="bookIntrodution != null" >
+        book_introdution,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="createuid != null" >
+        createuid,
+      </if>
+      <if test="createip != null" >
+        createip,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="updateuid != null" >
+        updateuid,
+      </if>
+      <if test="updateip != null" >
+        updateip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPrice != null" >
+        #{bookPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCategoty != null" >
+        #{bookCategoty,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+        #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookIntrodution != null" >
+        #{bookIntrodution,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuid != null" >
+        #{createuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createip != null" >
+        #{createip,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuid != null" >
+        #{updateuid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateip != null" >
+        #{updateip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Book" >
+    update book_table
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="bookAuthor != null" >
+        book_author = #{bookAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPrice != null" >
+        book_price = #{bookPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCategoty != null" >
+        book_categoty = #{bookCategoty,jdbcType=VARCHAR},
+      </if>
+      <if test="bookPublish != null" >
+        book_publish = #{bookPublish,jdbcType=VARCHAR},
+      </if>
+      <if test="bookIntrodution != null" >
+        book_introdution = #{bookIntrodution,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuid != null" >
+        createuid = #{createuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createip != null" >
+        createip = #{createip,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuid != null" >
+        updateuid = #{updateuid,jdbcType=VARCHAR},
+      </if>
+      <if test="updateip != null" >
+        updateip = #{updateip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Book" >
+    update book_table
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_price = #{bookPrice,jdbcType=VARCHAR},
+      book_categoty = #{bookCategoty,jdbcType=VARCHAR},
+      book_publish = #{bookPublish,jdbcType=VARCHAR},
+      book_introdution = #{bookIntrodution,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      createuid = #{createuid,jdbcType=VARCHAR},
+      createip = #{createip,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updateuid = #{updateuid,jdbcType=VARCHAR},
+      updateip = #{updateip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
